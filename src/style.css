@@ -1,0 +1,18 @@
+.reveal .title {
+    font-size: 1.5em;
+}
+
+.reveal .author {
+    font-size: 0.8em;
+}
+
+.reveal .date {
+    font-size: 0.4em;
+}
+
+.reveal .slides .slide-footer {
+    font-size: 16px;
+    position: fixed;
+    bottom: 0;
+    left:0;
+}

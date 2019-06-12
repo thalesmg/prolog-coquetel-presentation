@@ -1,0 +1,351 @@
+#+Title: Resolvendo Desafios de Lógica da Coquetel com Prolog
+#+Author: Thales Macedo Garitezi
+
+# ,#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@3.8.0
+#+REVEAL_ROOT: file:///home/thales/Downloads/reveal.js-3.8.0/
+#+REVEAL_THEME: black
+#+REVEAL_MIN_SCALE: 0.3
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_EXTRA_CSS: file:///home/thales/dev/prolog/prolog-coquetel-presentation/src/style.css
+#+OPTIONS: toc:1
+
+* Prolog
+
+- Programação baseada em regras e relações de lógica de primeira ordem.
+- Uma das primeiras linguagens de programação. Criada em 1972 por Alain Colmerauer e Robert Kowalski[fn:1]
+- A primeira versão de Erlang foi escrita em Prolog.
+
+[fn:1] https://en.wikipedia.org/wiki/Prolog
+
+** Sintaxe
+
+Termos: átomos, números, variáveis e termos compostos.
+
+*** Átomos:
+#+BEGIN_SRC prolog
+x
+mortal
+'Socrates'
+#+END_SRC
+
+*** Números:
+#+BEGIN_SRC prolog
+1
+3.1415
+#+END_SRC
+
+*** Variáveis:
+#+BEGIN_SRC prolog
+Xs
+NQ
+_NaoUsado
+_
+#+END_SRC
+
+*** Termos compostos:
+
+#+BEGIN_SRC prolog
+[1,2,x,Xs]
+"uma string marota"
+#+END_SRC
+
+*** Termos aninhados
+
+#+BEGIN_SRC prolog
+make_date(Y,M,D,date(Y,M,D)).
+
+get_year(date(Y,_,_),Y).
+get_month(date(_,M,_),M).
+get_day(date(_,_,D),D).
+#+END_SRC
+
+* Regras e Fatos
+
+** Fatos
+#+BEGIN_SRC prolog
+cat(tom).
+
+%% equivalente a:
+
+%% true/0
+cat(tom) :- true.
+#+END_SRC
+
+** Regras
+#+BEGIN_SRC prolog
+mortal(X) :- man(X).
+
+%%
+man(socrates).
+
+?- mortal(socrates).
+true.
+
+?- mortal(X).
+X = socrates.
+#+END_SRC
+#+REVEAL: split
+#+BEGIN_SRC prolog
+bom(pastel).
+bom(bigorna).
+bom(vila_grana).
+bom(coffee_lab).
+bom(casa_da_esfiha).
+
+barato(pastel).
+barato(restobar).
+barato(casa_da_esfiha).
+#+END_SRC
+#+REVEAL: split
+#+BEGIN_SRC prolog
+lugar_para_comer(R) :- bom(R), barato(R).
+
+?- lugar_para_comer(R).
+R = pastel ;
+R = casa_da_esfiha.
+#+END_SRC
+
+*** Disjunção
+
+#+BEGIN_SRC prolog
+type_of_character(Ch, Type) :-
+  ( Ch >= "a", Ch =< "z" ->
+      Type = lowercase
+  ; Ch >= "A", Ch =< "Z" ->
+      Type = uppercase
+  ; Ch >= "0", Ch =< "9" ->
+      Type = digit
+  ; otherwise ->
+      Type = other
+  ).
+
+?- type_of_character("0", T).
+T = digit.
+#+END_SRC
+
+* Algumas funções úteis
+** ~length~
+#+BEGIN_SRC prolog
+?- length([1,2,3], L).
+L = 3.
+#+END_SRC
+** ~dif~
+#+BEGIN_SRC prolog
+?- dif(a,b).
+true.
+
+?- dif(a,a).
+false.
+
+?- dif(X,socrates),
+   mortal(X).
+false.
+#+END_SRC
+** ~msort~
+#+BEGIN_SRC prolog
+?- msort([2,3,1], Sorted).
+Sorted = [1, 2, 3].
+#+END_SRC
+** ~maplist~
+#+BEGIN_SRC prolog
+?- maplist(length_(X), [[1,2], [2,3], [4,5]]).
+X = 2.
+
+?- maplist(length_(X), [[1,2], [2,3], [4]]).
+false.
+#+END_SRC
+** ~permutation~
+#+BEGIN_SRC prolog
+?- permutation([1,2,3], Ps).
+Ps = [1, 2, 3] ;
+Ps = [1, 3, 2] ;
+Ps = [2, 1, 3] ;
+Ps = [2, 3, 1] ;
+Ps = [3, 1, 2] ;
+Ps = [3, 2, 1] ;
+false.
+#+END_SRC
+** ~transpose~
+#+BEGIN_SRC prolog
+?- transpose([[1,2,3],[4,5,6],[7,8,9]], Ts).
+Ts = [[1, 4, 7], [2, 5, 8], [3, 6, 9]].
+#+END_SRC
+** ~member~
+#+BEGIN_SRC prolog
+?- member(b, [a, b, c]).
+true ;
+false.
+
+?- member(c, [a, b, c]).
+true.
+
+?- member(d, [a, b, c]).
+false.
+#+END_SRC
+
+* Desafios de Lógica Coquetel
+
+** Exemplo
+
+#+attr_html: :width 800px
+[[./exemplo_desafio.jpg]][fn:exemplo]
+
+[fn:exemplo] https://produto.mercadolivre.com.br/MLB-821393485-coquetel-desafios-de-logica-lote-c-2-revistas-novas--_JM
+
+* Arcabouço para soluções
+
+** Importando CLP(FD)
+
+/Constraint Logic Programming over Finite Domains[fn:2]/
+
+Introduz operadores de restrição sobre inteiros.
+
+#+BEGIN_SRC prolog
+:- use_module(library(clpfd)).
+#+END_SRC
+
+[fn:2] https://www.swi-prolog.org/man/clpfd.html
+
+** Algumas funções auxiliares
+
+#+BEGIN_SRC prolog
+length_(L, Ls) :- length(Ls, L).
+#+END_SRC
+#+REVEAL: split
+#+BEGIN_SRC prolog
+alldif([]).
+alldif([X|Xs]) :-
+    maplist(dif(X), Xs),
+    alldif(Xs).
+#+END_SRC
+#+REVEAL: split
+#+BEGIN_SRC prolog
+is_permutation(Xs, Ys) :-
+    msort(Xs, Sorted),
+    msort(Ys, Sorted).
+#+END_SRC
+
+* Solução para os Casais de Férias
+
+https://www.geniol.com.br/logica/desafios/casais-de-ferias/
+
+** Preâmbulo comum
+
+#+BEGIN_SRC prolog
+resolver(Pessoas) :-
+    length(Pessoas, 4),
+    maplist(length_(4), Pessoas),
+    transpose(Pessoas, Attrs),
+    Attrs = [_Casais, Diferenciais, Hoteis, Precos],
+    maplist(length_(4), Attrs),
+
+    permutation([100, 200, 300, 400], Precos),
+    permutation([ar_condicionado, bela_vista, janta, vaga_garagem], Diferenciais),
+    permutation([california, floresta_nativa, ponte_grande, volte_sempre], Hoteis),
+
+    Pessoas = [GR, JV, JL, LE],
+    GR = [gisele_rafael, _, _, _],
+    JV = [jeny_victor, _, _, _],
+    JL = [juliana_luis, _, _, _],
+    LE = [lucia_eder, _, _, _],
+#+END_SRC
+
+** Dicas
+
+#+BEGIN_SRC prolog
+    %% dica 1. O casal que ficou no hotel com vaga na garagem pagou R$
+    %% 100 a mais na diária do que o casal Juliana e Luis.
+#+END_SRC
+#+ATTR_REVEAL: :frag (appear fade-out)
+#+BEGIN_SRC prolog
+    member([CVagaGaragem, vaga_garagem, _, PVagaGaragem], Pessoas),
+    member([juliana_luis, DJulianaLuis, _, PJulianaLuis], Pessoas),
+    CVagaGaragem \= juliana_luis,
+    DJulianaLuis \= vaga_garagem,
+    PVagaGaragem #= PJulianaLuis + 100,
+#+END_SRC
+
+#+REVEAL: split
+
+#+BEGIN_SRC prolog
+    %% dica 2. O casal que se hospedou no hotel Volte Sempre pagou uma
+    %% diária mais cara do que o casal Jeny e Victor.
+#+END_SRC
+#+ATTR_REVEAL: :frag (appear fade-out)
+#+BEGIN_SRC prolog
+    member([CVolteSempre, _, volte_sempre, PVolteSempre], Pessoas),
+    member([jeny_victor, _, HJenyVictor, PJenyVictor], Pessoas),
+    CVolteSempre \= jeny_victor,
+    HJenyVictor \= volte_sempre,
+    PVolteSempre #> PJenyVictor,
+#+END_SRC
+
+#+REVEAL: split
+
+#+BEGIN_SRC prolog
+    %% dica 3. O hotel California não tem a diária mais barata.
+#+END_SRC
+#+ATTR_REVEAL: :frag (appear fade-out)
+#+BEGIN_SRC prolog
+    member([_, _, california, PCalifornia], Pessoas),
+    PCalifornia #> 100,
+#+END_SRC
+
+#+REVEAL: split
+
+#+BEGIN_SRC prolog
+    %% dica 4. A diária do hotel Floresta Nativa é mais cara do que a
+    %% diária do hotel Volte Sempre.
+#+END_SRC
+#+ATTR_REVEAL: :frag (appear fade-out)
+#+BEGIN_SRC prolog
+    member([_, _, floresta_nativa, PFlorestaNativa], Pessoas),
+    member([_, _, volte_sempre, PVolteSempre], Pessoas),
+    PFlorestaNativa #> PVolteSempre,
+#+END_SRC
+
+#+REVEAL: split
+
+#+BEGIN_SRC prolog
+    %% dica 5. O hotel que tem ar condicionado é o Floresta Nativa ou
+    %% o hotel com a diária de R$ 100.
+#+END_SRC
+#+ATTR_REVEAL: :frag (appear fade-out)
+#+BEGIN_SRC prolog
+    member([_, ar_condicionado, HArCondicionado, PArCondicionado], Pessoas),
+    ( HArCondicionado == floresta_nativa, PArCondicionado #\= 100
+    ; HArCondicionado \= floresta_nativa, PArCondicionado #= 100 ),
+#+END_SRC
+
+#+REVEAL: split
+
+#+BEGIN_SRC prolog
+    %% dica 6. Sobre o casal Lucia e Eder e o casal que se hospedou no
+    %% hotel Floresta Nativa, um ficou no quarto com bela vista e o
+    %% outro pagou R$ 200 de diária, não necessariamente nessa ordem.
+#+END_SRC
+#+ATTR_REVEAL: :frag (appear fade-out)
+#+BEGIN_SRC prolog
+    member([lucia_eder, DLuciaEder, HLuciaEder, PLuciaEder], Pessoas),
+    member([CFlorestaNativa, DFlorestaNativa, floresta_nativa, PFlorestaNativa], Pessoas),
+    CFlorestaNativa \= lucia_eder,
+    HLuciaEder \= floresta_nativa,
+    ( DLuciaEder == bela_vista, PFlorestaNativa #= 200
+    ; DFlorestaNativa == bela_vista, PLuciaEder #= 200 ).
+#+END_SRC
+
+* Solução
+
+#+BEGIN_SRC shell
+$ swipl -g 'resolver_formatado(Ps)' desafio2.pl </dev/null
+#+END_SRC
+
+#+BEGIN_SRC prolog
+[desafio2].
+resolver_formatado(Ps).
+#+END_SRC
+
+* Tufe?
+
+#+ATTR_REVEAL: :frag (grow)
+Tufe.
