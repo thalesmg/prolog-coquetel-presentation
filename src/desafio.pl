@@ -1,5 +1,6 @@
 %% -*- mode: prolog; -*-
 :- use_module(library(clpfd)).
+:- consult(comum).
 
 length_(L, Ls) :- length(Ls, L).
 
@@ -63,3 +64,7 @@ resolver(Ps) :-
     DQuebrado + 1 #= DCasablanca,
     DQuebrado #> DBandidos,
     DQuebrado #> DTouro.
+
+resolver_formatado(Ps) :-
+    resolver(Ps),
+    formatar_solução(Ps, ['Amigo', 'Filme', 'Objetivo', 'N DVDs']).
