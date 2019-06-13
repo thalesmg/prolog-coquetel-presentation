@@ -6,8 +6,8 @@
 #+REVEAL_THEME: black
 #+REVEAL_MIN_SCALE: 0.3
 #+REVEAL_MAX_SCALE: 2.5
-#+REVEAL_EXTRA_CSS: file:///home/thales/dev/prolog/prolog-coquetel-presentation/src/style.css
-#+REVEAL_TITLE_SLIDE_BACKGROUND: file:///home/thales/dev/prolog/prolog-coquetel-presentation/src/logo2.png
+#+REVEAL_EXTRA_CSS: ./src/style.css
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./src/logo2.png
 #+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: 100px
 #+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT: repeat
 #+OPTIONS: toc:1
