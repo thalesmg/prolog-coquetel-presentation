@@ -1,8 +1,8 @@
 #+Title: Resolvendo Desafios de Lógica da Coquetel com Prolog
 #+Author: Thales Macedo Garitezi
 
-# ,#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@3.8.0
-#+REVEAL_ROOT: file:///home/thales/Downloads/reveal.js-3.8.0/
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@3.8.0
+# ,#+REVEAL_ROOT: file:///home/thales/Downloads/reveal.js-3.8.0/
 #+REVEAL_THEME: black
 #+REVEAL_MIN_SCALE: 0.3
 #+REVEAL_MAX_SCALE: 2.5
