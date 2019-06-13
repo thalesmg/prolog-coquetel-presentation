@@ -11,7 +11,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/css/theme/black.css" id="theme"/>
 
-<link rel="stylesheet" href="file:///home/thales/dev/prolog/prolog-coquetel-presentation/src/style.css"/>
+<link rel="stylesheet" href="./src/style.css"/>
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -27,21 +27,21 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide" data-background="file:///home/thales/dev/prolog/prolog-coquetel-presentation/src/logo2.png" data-background-size="100px" data-background-repeat="repeat"><h1 class="title">Resolvendo Desafios de Lógica da Coquetel com Prolog</h1><h2 class="author">Thales Macedo Garitezi</h2><p class="date">Created: 2019-06-13 Thu 20:03</p>
+<section id="sec-title-slide" data-background="./src/logo2.png" data-background-size="100px" data-background-repeat="repeat"><h1 class="title">Resolvendo Desafios de Lógica da Coquetel com Prolog</h1><h2 class="author">Thales Macedo Garitezi</h2><p class="date">Created: 2019-06-13 Thu 20:39</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orgc11a141">1. Prolog</a></li>
-<li><a href="#/slide-org5a988e0">2. Regras e Fatos</a></li>
-<li><a href="#/slide-org45af864">3. Algumas funções úteis</a></li>
-<li><a href="#/slide-org2266fc4">4. Desafios de Lógica Coquetel</a></li>
-<li><a href="#/slide-orgf1d0bce">5. Arcabouço para soluções</a></li>
-<li><a href="#/slide-org6f93d3b">6. Solução para os Casais de Férias</a></li>
-<li><a href="#/slide-orgaa24791">7. Solução</a></li>
-<li><a href="#/slide-orgf29e2e3">8. Tufe?</a></li>
+<li><a href="#/slide-orgb37747e">1. Prolog</a></li>
+<li><a href="#/slide-org1d7016a">2. Regras e Fatos</a></li>
+<li><a href="#/slide-orgeb3547d">3. Algumas funções úteis</a></li>
+<li><a href="#/slide-org703ca32">4. Desafios de Lógica Coquetel</a></li>
+<li><a href="#/slide-orgebea23a">5. Arcabouço para soluções</a></li>
+<li><a href="#/slide-orgadc92a9">6. Solução para os Casais de Férias</a></li>
+<li><a href="#/slide-org9dc9916">7. Solução</a></li>
+<li><a href="#/slide-orgf9fa10d">8. Tufe?</a></li>
 </ul>
 </div>
 </div>
@@ -49,7 +49,7 @@
 
 <section>
 <section id="slide-sec-1">
-<h2 id="orgc11a141"><span class="section-number-2">1</span> Prolog</h2>
+<h2 id="orgb37747e"><span class="section-number-2">1</span> Prolog</h2>
 <ul>
 <li>Programação baseada em regras e relações de lógica de primeira ordem.</li>
 <li>Uma das primeiras linguagens de programação. Criada em 1972 por Alain Colmerauer e Robert Kowalski<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></li>
@@ -59,14 +59,14 @@
 
 </section>
 <section id="slide-sec-1-1">
-<h3 id="orgdc6cce9"><span class="section-number-3">1.1</span> Sintaxe</h3>
+<h3 id="orgd24a5a3"><span class="section-number-3">1.1</span> Sintaxe</h3>
 <p>
 Termos: átomos, números, variáveis e termos compostos.
 </p>
 
 </section>
 <section id="slide-sec-1-1-1">
-<h4 id="org4daebeb"><span class="section-number-4">1.1.1</span> Átomos:</h4>
+<h4 id="orga79e947"><span class="section-number-4">1.1.1</span> Átomos:</h4>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>x
@@ -77,7 +77,7 @@ mortal
 
 </section>
 <section id="slide-sec-1-1-2">
-<h4 id="org246857b"><span class="section-number-4">1.1.2</span> Números:</h4>
+<h4 id="orga802c70"><span class="section-number-4">1.1.2</span> Números:</h4>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>1
@@ -87,7 +87,7 @@ mortal
 
 </section>
 <section id="slide-sec-1-1-3">
-<h4 id="org69c5244"><span class="section-number-4">1.1.3</span> Variáveis:</h4>
+<h4 id="orgc9db68c"><span class="section-number-4">1.1.3</span> Variáveis:</h4>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #4eee94;">Xs</span>
@@ -99,7 +99,7 @@ mortal
 
 </section>
 <section id="slide-sec-1-1-4">
-<h4 id="orga9da950"><span class="section-number-4">1.1.4</span> Termos compostos:</h4>
+<h4 id="orgc683d5f"><span class="section-number-4">1.1.4</span> Termos compostos:</h4>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #8c8c8c;">[</span>1,2,x,<span style="color: #4eee94;">Xs</span><span style="color: #8c8c8c;">]</span>
@@ -109,7 +109,7 @@ mortal
 
 </section>
 <section id="slide-sec-1-1-5">
-<h4 id="org695628d"><span class="section-number-4">1.1.5</span> Termos aninhados</h4>
+<h4 id="org20e2d2f"><span class="section-number-4">1.1.5</span> Termos aninhados</h4>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #daa520;">make_date</span><span style="color: #8c8c8c;">(</span><span style="color: #4eee94;">Y</span>,<span style="color: #4eee94;">M</span>,<span style="color: #4eee94;">D</span>,date<span style="color: #93a8c6;">(</span><span style="color: #4eee94;">Y</span>,<span style="color: #4eee94;">M</span>,<span style="color: #4eee94;">D</span><span style="color: #93a8c6;">)</span><span style="color: #8c8c8c;">)</span>.
@@ -124,12 +124,12 @@ mortal
 </section>
 <section>
 <section id="slide-sec-2">
-<h2 id="org5a988e0"><span class="section-number-2">2</span> Regras e Fatos</h2>
+<h2 id="org1d7016a"><span class="section-number-2">2</span> Regras e Fatos</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 </section>
 <section id="slide-sec-2-1">
-<h3 id="org331358b"><span class="section-number-3">2.1</span> Fatos</h3>
+<h3 id="org3ce26e5"><span class="section-number-3">2.1</span> Fatos</h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #daa520;">cat</span><span style="color: #8c8c8c;">(</span>tom<span style="color: #8c8c8c;">)</span>.
@@ -143,7 +143,7 @@ mortal
 
 </section>
 <section id="slide-sec-2-2">
-<h3 id="orgbafeff9"><span class="section-number-3">2.2</span> Regras</h3>
+<h3 id="org95634b4"><span class="section-number-3">2.2</span> Regras</h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #daa520;">mortal</span><span style="color: #8c8c8c;">(</span><span style="color: #4eee94;">X</span><span style="color: #8c8c8c;">)</span> :- man<span style="color: #8c8c8c;">(</span><span style="color: #4eee94;">X</span><span style="color: #8c8c8c;">)</span>.
@@ -187,7 +187,7 @@ true.
 
 </section>
 <section id="slide-sec-2-2-1">
-<h4 id="org80d5bc1"><span class="section-number-4">2.2.1</span> Disjunção</h4>
+<h4 id="org04421ba"><span class="section-number-4">2.2.1</span> Disjunção</h4>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #daa520;">type_of_character</span><span style="color: #8c8c8c;">(</span><span style="color: #4eee94;">Ch</span>, <span style="color: #4eee94;">Type</span><span style="color: #8c8c8c;">)</span> :-
@@ -210,12 +210,12 @@ true.
 </section>
 <section>
 <section id="slide-sec-3">
-<h2 id="org45af864"><span class="section-number-2">3</span> Algumas funções úteis</h2>
+<h2 id="orgeb3547d"><span class="section-number-2">3</span> Algumas funções úteis</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 </section>
 <section id="slide-sec-3-1">
-<h3 id="orga0ff5c1"><span class="section-number-3">3.1</span> <code>length</code></h3>
+<h3 id="orgdbe030c"><span class="section-number-3">3.1</span> <code>length</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>?- length<span style="color: #8c8c8c;">(</span><span style="color: #93a8c6;">[</span>1,2,3<span style="color: #93a8c6;">]</span>, <span style="color: #4eee94;">L</span><span style="color: #8c8c8c;">)</span>.
@@ -224,7 +224,7 @@ true.
 </div>
 </section>
 <section id="slide-sec-3-2">
-<h3 id="org514a6cd"><span class="section-number-3">3.2</span> <code>dif</code></h3>
+<h3 id="org4694299"><span class="section-number-3">3.2</span> <code>dif</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>?- dif<span style="color: #8c8c8c;">(</span>a,b<span style="color: #8c8c8c;">)</span>.
@@ -245,7 +245,7 @@ false.
 </div>
 </section>
 <section id="slide-sec-3-3">
-<h3 id="org2e68fbd"><span class="section-number-3">3.3</span> <code>msort</code></h3>
+<h3 id="orga733416"><span class="section-number-3">3.3</span> <code>msort</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>?- msort<span style="color: #8c8c8c;">(</span><span style="color: #93a8c6;">[</span>2,3,1<span style="color: #93a8c6;">]</span>, <span style="color: #4eee94;">Sorted</span><span style="color: #8c8c8c;">)</span>.
@@ -254,7 +254,7 @@ false.
 </div>
 </section>
 <section id="slide-sec-3-4">
-<h3 id="org1a1de89"><span class="section-number-3">3.4</span> <code>maplist</code></h3>
+<h3 id="org701d97c"><span class="section-number-3">3.4</span> <code>maplist</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>?- maplist<span style="color: #8c8c8c;">(</span>length_<span style="color: #93a8c6;">(</span><span style="color: #4eee94;">X</span><span style="color: #93a8c6;">)</span>, <span style="color: #93a8c6;">[</span><span style="color: #b0b1a3;">[</span>1,2<span style="color: #b0b1a3;">]</span>, <span style="color: #b0b1a3;">[</span>2,3<span style="color: #b0b1a3;">]</span>, <span style="color: #b0b1a3;">[</span>4,5<span style="color: #b0b1a3;">]</span><span style="color: #93a8c6;">]</span><span style="color: #8c8c8c;">)</span>.
@@ -266,7 +266,7 @@ false.
 </div>
 </section>
 <section id="slide-sec-3-5">
-<h3 id="orgbb25552"><span class="section-number-3">3.5</span> <code>permutation</code></h3>
+<h3 id="orgaed0657"><span class="section-number-3">3.5</span> <code>permutation</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>?- permutation<span style="color: #8c8c8c;">(</span><span style="color: #93a8c6;">[</span>1,2,3<span style="color: #93a8c6;">]</span>, <span style="color: #4eee94;">Ps</span><span style="color: #8c8c8c;">)</span>.
@@ -281,7 +281,7 @@ false.
 </div>
 </section>
 <section id="slide-sec-3-6">
-<h3 id="org7bc0e7c"><span class="section-number-3">3.6</span> <code>transpose</code></h3>
+<h3 id="orga668093"><span class="section-number-3">3.6</span> <code>transpose</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>?- transpose<span style="color: #8c8c8c;">(</span><span style="color: #93a8c6;">[</span><span style="color: #b0b1a3;">[</span>1,2,3<span style="color: #b0b1a3;">]</span>
@@ -292,7 +292,7 @@ false.
 </div>
 </section>
 <section id="slide-sec-3-7">
-<h3 id="org1d13fde"><span class="section-number-3">3.7</span> <code>member</code></h3>
+<h3 id="orgbdc5664"><span class="section-number-3">3.7</span> <code>member</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim>?- member<span style="color: #8c8c8c;">(</span>b, <span style="color: #93a8c6;">[</span>a, b, c<span style="color: #93a8c6;">]</span><span style="color: #8c8c8c;">)</span>.
@@ -311,12 +311,12 @@ false.
 </section>
 <section>
 <section id="slide-sec-4">
-<h2 id="org2266fc4"><span class="section-number-2">4</span> Desafios de Lógica Coquetel</h2>
+<h2 id="org703ca32"><span class="section-number-2">4</span> Desafios de Lógica Coquetel</h2>
 <div class="outline-text-2" id="text-4">
 </div>
 </section>
 <section id="slide-sec-4-1">
-<h3 id="org5799286"><span class="section-number-3">4.1</span> Exemplo</h3>
+<h3 id="orge7a8b37"><span class="section-number-3">4.1</span> Exemplo</h3>
 <p width="800px">
 <img src="./exemplo_desafio.jpg" alt="exemplo_desafio.jpg" width="800px" /><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
 </p>
@@ -325,12 +325,12 @@ false.
 </section>
 <section>
 <section id="slide-sec-5">
-<h2 id="orgf1d0bce"><span class="section-number-2">5</span> Arcabouço para soluções</h2>
+<h2 id="orgebea23a"><span class="section-number-2">5</span> Arcabouço para soluções</h2>
 <div class="outline-text-2" id="text-5">
 </div>
 </section>
 <section id="slide-sec-5-1">
-<h3 id="org40578f7"><span class="section-number-3">5.1</span> Importando CLP(FD)</h3>
+<h3 id="org51019b1"><span class="section-number-3">5.1</span> Importando CLP(FD)</h3>
 <p>
 <i>Constraint Logic Programming over Finite Domains<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></i>
 </p>
@@ -347,7 +347,7 @@ Introduz operadores de restrição sobre inteiros.
 
 </section>
 <section id="slide-sec-5-2">
-<h3 id="org05eb82f"><span class="section-number-3">5.2</span> Algumas funções auxiliares</h3>
+<h3 id="orgd717e4a"><span class="section-number-3">5.2</span> Algumas funções auxiliares</h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #daa520;">length_</span><span style="color: #8c8c8c;">(</span><span style="color: #4eee94;">L</span>, <span style="color: #4eee94;">Ls</span><span style="color: #8c8c8c;">)</span> :- length<span style="color: #8c8c8c;">(</span><span style="color: #4eee94;">Ls</span>, <span style="color: #4eee94;">L</span><span style="color: #8c8c8c;">)</span>.
@@ -377,14 +377,14 @@ Introduz operadores de restrição sobre inteiros.
 </section>
 <section>
 <section id="slide-sec-6">
-<h2 id="org6f93d3b"><span class="section-number-2">6</span> Solução para os Casais de Férias</h2>
+<h2 id="orgadc92a9"><span class="section-number-2">6</span> Solução para os Casais de Férias</h2>
 <p>
 <a href="https://www.geniol.com.br/logica/desafios/casais-de-ferias/">https://www.geniol.com.br/logica/desafios/casais-de-ferias/</a>
 </p>
 
 </section>
 <section id="slide-sec-6-1">
-<h3 id="org7dee828"><span class="section-number-3">6.1</span> Preâmbulo comum</h3>
+<h3 id="orgd81e05b"><span class="section-number-3">6.1</span> Preâmbulo comum</h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #daa520;">resolver</span><span style="color: #8c8c8c;">(</span><span style="color: #4eee94;">Pessoas</span><span style="color: #8c8c8c;">)</span> :-
@@ -408,7 +408,7 @@ Introduz operadores de restrição sobre inteiros.
 
 </section>
 <section id="slide-sec-6-2">
-<h3 id="orgc27206d"><span class="section-number-3">6.2</span> Dicas</h3>
+<h3 id="org6b92e08"><span class="section-number-3">6.2</span> Dicas</h3>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><code trim><span style="color: #7f7f7f;">%% </span><span style="color: #7f7f7f; font-style: italic;">dica 1. O casal que ficou no hotel com vaga na garagem pagou R$</span>
@@ -518,7 +518,7 @@ Introduz operadores de restrição sobre inteiros.
 </section>
 <section>
 <section id="slide-sec-7">
-<h2 id="orgaa24791"><span class="section-number-2">7</span> Solução</h2>
+<h2 id="org9dc9916"><span class="section-number-2">7</span> Solução</h2>
 <div class="org-src-container">
 
 <pre  class="src src-shell"><code trim>$ swipl -g <span style="color: #deb887;">'resolver_formatado(Ps)'</span> desafio2.pl &lt;/dev/null
@@ -536,7 +536,7 @@ Introduz operadores de restrição sobre inteiros.
 </section>
 <section>
 <section id="slide-sec-8">
-<h2 id="orgf29e2e3"><span class="section-number-2">8</span> Tufe?</h2>
+<h2 id="orgf9fa10d"><span class="section-number-2">8</span> Tufe?</h2>
 <p class="fragment (grow)">
 Tufe.
 </p>
